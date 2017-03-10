@@ -100,6 +100,12 @@ open class TwicketSegmentedControl: UIControl {
         }
     }
 
+    open var borderColor: UIColor = Palette.sliderColor {
+        didSet {
+            backgroundView.layer.borderColor = borderColor.cgColor
+        }
+    }
+    
     private(set) open var selectedSegmentIndex: Int = 0
 
     private var segments: [String] = []
@@ -137,6 +143,9 @@ open class TwicketSegmentedControl: UIControl {
         containerView.addSubview(selectedContainerView)
         containerView.addSubview(sliderView)
 
+        backgroundView.layer.borderColor = UIColor.black.cgColor
+        backgroundView.layer.borderWidth = 1.0
+        
         selectedContainerView.layer.mask = sliderView.sliderMaskView.layer
         addTapGesture()
         addDragGesture()
