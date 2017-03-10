@@ -16,9 +16,9 @@ open class TwicketSegmentedControl: UIControl {
     open static let height: CGFloat = Constants.height + Constants.topBottomMargin * 2
 
     private struct Constants {
-        static let height: CGFloat = 30
-        static let topBottomMargin: CGFloat = 5
-        static let leadingTrailingMargin: CGFloat = 10
+        static let height: CGFloat = 45
+        static let topBottomMargin: CGFloat = 0
+        static let leadingTrailingMargin: CGFloat = 0
     }
 
     class SliderView: UIView {
