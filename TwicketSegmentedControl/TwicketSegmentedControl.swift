@@ -10,6 +10,7 @@ import UIKit
 
 public protocol TwicketSegmentedControlDelegate: class {
     func didSelect(_ twicketSegmentedControl: TwicketSegmentedControl, didSelect index: Int)
+    func didClick(_ twicketSegmentedControl: TwicketSegmentedControl, didClick index: Int)
 }
 
 open class TwicketSegmentedControl: UIControl {
@@ -250,7 +251,8 @@ open class TwicketSegmentedControl: UIControl {
     }
 
     @objc private func didTap(tapGesture: UITapGestureRecognizer) {
-        moveToNearestPoint(basedOn: tapGesture)
+        let index = moveToNearestPoint(basedOn: tapGesture)
+        delegate?.didClick(self, didClick: index)
     }
 
     @objc private func didPan(panGesture: UIPanGestureRecognizer) {
@@ -268,7 +270,7 @@ open class TwicketSegmentedControl: UIControl {
 
     // MARK: Slider position
 
-    private func moveToNearestPoint(basedOn gesture: UIGestureRecognizer, velocity: CGPoint? = nil) {
+    private func moveToNearestPoint(basedOn gesture: UIGestureRecognizer, velocity: CGPoint? = nil) -> Int {
         var location = gesture.location(in: self)
         if let velocity = velocity {
             let offset = velocity.x / 12
@@ -277,6 +279,7 @@ open class TwicketSegmentedControl: UIControl {
         let index = segmentIndex(for: location)
         move(to: index)
         delegate?.didSelect(self, didSelect: index)
+        return index
     }
 
     open func move(to index: Int) {
