@@ -107,6 +107,12 @@ open class TwicketSegmentedControl: UIControl {
         }
     }
     
+    open var selectedContainerViewIsHidden: Bool = false {
+        didSet {
+            selectedContainerView.isHidden = selectedContainerViewIsHidden
+        }
+    }
+    
     private(set) open var selectedSegmentIndex: Int = 0
     private var previousIndex: Int = 0
     
